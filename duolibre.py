@@ -48,24 +48,31 @@ def get_secret(activation_uri):
 
     request = requests.post(address, headers=headers, params=params, data=data)
     request.raise_for_status()
-    return base64.b32encode(request.json()["response"]["hotp_secret"].encode())
+    hotp_secret = request.json()["response"]["hotp_secret"]
+    return base64.b32encode(hotp_secret.encode())
 
 
 @click.command()
 @click.argument("activation-uri")
-@click.argument("output-file")
+@click.option("--output-file")
 def duolibre(activation_uri, output_file):
     secret = get_secret(activation_uri)
-    print("secret is", secret)
+    print(f"Fetched secret: {secret}")
+
     hotp = pyotp.hotp.HOTP(secret)
     uri = hotp.provisioning_uri("Duolibre", initial_count=1)
+    print(f"Provisioning URI is: {uri}")
 
-    factory = qrcode.image.svg.SvgPathImage
-    image = qrcode.make(uri, image_factory=factory)
-
-    image.save(output_file)
-    print(f"Wrote {output_file}")
-
+    if output_file:
+        factory = qrcode.image.svg.SvgPathImage
+        image = qrcode.make(uri, image_factory=factory)
+        image.save(output_file)
+        print(f"Wrote provisioning QR code to {output_file}")
+    else:
+        print("No output file specified, printing QR code to terminal...")
+        qr = qrcode.QRCode()
+        qr.add_data(uri)
+        qr.print_tty()
 
 if __name__ == "__main__":
     duolibre()
