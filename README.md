@@ -32,7 +32,7 @@ If you'd rather save the generated provisioning QR code to an SVG file instead o
 
 ## Background
 
-The Duo Mobile app [collects](https://help.duo.com/s/article/2939?language=en_US) a considerable amount of analytics data from its users. Privacy-conscious folks and those who simply do not wish to run proprietary software on their phones should have a way to opt-out without special intervention from their organization. Duolibre makes it easy to switch to an an alternative authenticator that's more respectful of users' privacy and their freedoms.
+The Duo Mobile app [collects](https://help.duo.com/s/article/2939?language=en_US) a considerable amount of analytics data from its users. Privacy-conscious folks and those who simply do not wish to run proprietary software on their phones should have a way to opt-out without special intervention from their organization. Duolibre makes it easy to switch to an an alternative authenticator that's more respectful of users' privacy and freedoms.
 
 I developed Duolibre by man-in-the-middling communication between the Duo Mobile client and Duo's servers. Duo Mobile for Android implements certificate pinning to defend against this reverse-engineering technique, but I was able to circumvent that using the Xposed module [JustTrustMe](https://github.com/Fuzion24/JustTrustMe).
 
