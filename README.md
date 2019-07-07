@@ -15,7 +15,7 @@ cd duolibre/
 Install the dependencies:
 
 ```
-pip3 install --user -r requirements.txt
+pip3 install --user --upgrade -r requirements.txt
 ```
 
 Run Duolibre against the activation URL that was sent to your phone via SMS:
