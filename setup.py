@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="duolibre",
-    version="1.0.0",
+    version="1.0.1",
     description="Authenticate to Duo 2FA systems without the proprietary Duo Mobile app",
     url="https://github.com/evan-goode/duolibre",
     author="Evan Goode",
