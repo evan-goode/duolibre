@@ -7,10 +7,30 @@ import pyotp
 import qrcode
 import qrcode.image.svg
 import requests
+from urllib import parse
 from urllib.parse import urlparse
 
+# this function is from https://github.com/WillForan/duo-hotp
+def qr_url_to_activation_url(qr_url):
+    "Create request URL"
+    # get ?value=XXX
+    data = parse.unquote(qr_url.split("?value=")[1])
+    # first half of value is the activation code
+    code = data.split("-")[0].replace("duo://", "")
+    # second half of value is the hostname in base64
+    hostb64 = data.split("-")[1]
+    # Same as "api-e4c9863e.duosecurity.com"
+    host = base64.b64decode(hostb64 + "=" * (-len(hostb64) % 4))
+    # this api is not publicly known
+    activation_url = "https://{host}/push/v2/activation/{code}".format(
+        host=host.decode("utf-8"), code=code
+    )
+    print(activation_url)
+    return activation_url
 
 def get_secret(activation_uri):
+    if "frame/qr" in activation_uri:
+        activation_uri = qr_url_to_activation_url(activation_uri)
     parsed = urlparse(activation_uri)
     subdomain = parsed.netloc.split(".")[0]
     host_id = subdomain.split("-")[-1]
