@@ -10,7 +10,7 @@ Install from PyPI:
 pip install --user duolibre
 ```
 
-Run Duolibre against the activation URL that was sent to your phone via SMS:
+Run Duolibre against the activation URL that was sent to your phone via SMS, or the URL of the QR code displayed on the web interface:
 
 ```
 duolibre https://m-XXXXXXXX.duosecurity.com/android/XXXXXXXXXXXXXXXXXXXX
