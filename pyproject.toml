@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "duolibre"
+version = "1.1.0"
+description = "Authenticate to Duo 2FA systems without the proprietary Duo Mobile app"
+authors = ["Evan Goode <mail@evangoo.de>"]
+license = "The Unlicense"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+click = "^8.1.7"
+pycryptodome = "^3.19.0"
+pyotp = "^2.9.0"
+qrcode = "^7.4.2"
+requests = "^2.31.0"
+
+[tool.poetry.scripts]
+duolibre = "duolibre.duolibre:duolibre"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

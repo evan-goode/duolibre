@@ -1,5 +1,0 @@
-click
-pycryptodome
-pyotp
-qrcode
-requests
