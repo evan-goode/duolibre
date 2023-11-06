@@ -4,10 +4,16 @@ Duolibre lets you authenticate to Duo 2FA systems without the proprietary Duo Mo
 
 ## Getting started
 
-Install from PyPI:
+Install via pip:
 
 ```
-pip install --user duolibre
+pip install --user git+https://github.com/evan-goode/duolibre.git
+```
+
+Or, using Nix, start a shell with Duolibre
+
+```
+nix shell github:evan-goode/duolibre
 ```
 
 Run Duolibre against the activation URL that was sent to your phone via SMS, or the URL of the QR code displayed on the web interface:
